@@ -1,5 +1,8 @@
-# Virtual enviroment
+# Enviroment
 env
 
 # Vars
 .env
+
+# GitIgnore
+.gitignore
