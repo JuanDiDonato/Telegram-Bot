@@ -24,8 +24,19 @@ class TelegramBot():
 
     def __init__(self):
         self.updater = Updater(os.getenv('TOKEN'),use_context=True)
-        self.PATH = f'{os.getcwd()}/downloads'  # Path del archivo
         
+        self.PATH = f'{os.getcwd()}/downloads'  # Path del archivo
+
+    # Crea la carpeta downloads  
+    def directory(self):
+        dirs = os.listdir('.')
+        if not 'downloads' in dirs:
+            os.mkdir('downloads')
+        else :
+            songs = os.listdir('./downloads')
+            for song in songs:
+                os.remove(f'{self.PATH}/{song}')
+
     # Esta funcion se ejecuta cuando el usuario hace click en "iniciar" desde Telegram, o con /start
     def start(self,update:Update,contetx:CallbackContext):
         update.message.reply_text('¡Hola soy el Michi! Yo te voy a ayudar a escuchar la cancion que vos quieras. Para mas ayuda escribi "/help"')
@@ -160,6 +171,7 @@ class TelegramBot():
     # Inicia el bot
     def start_bot(self):
         self.set_commands()
+        self.directory()
         self.updater.start_polling()
 
 bot = TelegramBot()
