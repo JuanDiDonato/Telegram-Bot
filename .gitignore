@@ -1,0 +1,5 @@
+# Virtual enviroment
+env
+
+# Vars
+.env
